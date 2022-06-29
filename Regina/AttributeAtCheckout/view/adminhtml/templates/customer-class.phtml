@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var \Magento\Sales\Block\Adminhtml\Order\View $block
+ */
+$order = $block->getOrder();
+$customerType = $order->getData('customer_class');
+?>
+<?php if ($customerType) : ?>
+<table class="admin__table-secondary order-information-table">
+    <tr>
+        <th><?= $block->escapeHtml(__('Customer Type')) ?></th>
+        <td><?= $block->escapeHtml($customerType) ?></td>
+    </tr>
+
+<?php endif; ?>

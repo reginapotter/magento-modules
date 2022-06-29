@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="AddCustomerClassToCheckout" type="Regina\AttributeAtCheckout\Plugin\AddCustomerClassToCheckout" />
+    </type>
+
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save_to_quote_table" type="Regina\AttributeAtCheckout\Plugin\SaveToQuote" sortOrder="10" />
+    </type>
+
+    <type name="Regina\AttributeAtCheckout\Observer\SaveToOrder">
+        <arguments>
+            <argument name="saveToCustomerEntityProxy" xsi:type="object">Regina\AttributeAtCheckout\Service\SaveToCustomerEntity\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Regina\AttributeAtCheckout\Service\SaveToCustomerEntity">
+        <arguments>
+            <argument name="customerRepositoryProxy" xsi:type="object">Magento\Customer\Api\CustomerRepositoryInterface\Proxy</argument>
+            <argument name="eavConfig" xsi:type="object">Magento\Eav\Model\Config\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Regina\AttributeAtCheckout\Plugin\AddCustomerClassToCheckout">
+        <arguments>
+            <argument name="customerClassAssigned" xsi:type="object">Regina\AttributeAtCheckout\Service\IsCustomerClassAssigned\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin name="AddCustomerClassToOrderApi" type="Regina\AttributeAtCheckout\Plugin\AddCustomerClassToOrderApi" sortOrder="1"/>
+    </type>
+</config>

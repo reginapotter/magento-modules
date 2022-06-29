@@ -1,0 +1,23 @@
+<fieldset id="customer_class-fieldset" class="fieldset customer_class">
+    <div class="field _required" data-bind="visible: visible, css: additionalClasses">
+        <label class="label" for="customer_class" ><span data-bind="i18n: 'Customer Type'">Customer Type</span></label>
+        <div class="control" >
+            <select name="customer_class"
+                    id="customer_class"
+                    class="input-select"
+                    data-bind="
+                      options: getOptions(),
+                      optionsValue: 'label',
+                      optionsCaption: 'Please Select Customer Type',
+                      optionsLabel: 'value',
+                      value: customer_class,
+                      afterRender:afterRender"
+                    data-validate="{required:true}">
+            </select>
+        </div>
+        <div class="field-error">
+            <span id="error-message"></span>
+        </div>
+    </div>
+</fieldset>
+
